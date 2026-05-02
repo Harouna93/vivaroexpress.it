@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivaro Express – Traslochi & Trasporti Pavia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --blue: #1a3a6e;
+    --accent: #e8a020;
+    --accent2: #f5c842;
+    --light: #f4f6fa;
+    --white: #ffffff;
+    --gray: #8a96a8;
+    --text: #1c2333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--white); letter-spacing: 1px;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--navy) !important;
+    padding: 8px 20px; border-radius: 4px;
+    font-weight: 700 !important;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding-top: 70px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(26,58,110,0.7) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,160,32,0.12) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--white) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--white) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 4px;
+    text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 30px; height: 2px; background: var(--accent);
+  }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--white); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .highlight {
+    color: var(--accent); display: block;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.7; max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+    padding: 14px 32px; border: none; border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,160,32,0.4);
+  }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 14px 32px; border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 5%; }
+  .section-max { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 4px;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900; text-transform: uppercase;
+    line-height: 1; margin-bottom: 1.2rem;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: #5a6476;
+    line-height: 1.75; max-width: 560px;
+  }
+
+  /* ── SERVICES ── */
+  #servizi { background: var(--light); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2.5rem;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem; font-weight: 800;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .service-card p { font-size: 0.95rem; color: #5a6476; line-height: 1.7; }
+  .service-list {
+    margin-top: 1rem; list-style: none;
+  }
+  .service-list li {
+    font-size: 0.9rem; color: #5a6476;
+    padding: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .service-list li::before { content: '→'; color: var(--accent); font-weight: 700; }
+
+  /* ── WHY US ── */
+  #perche { background: var(--navy); color: var(--white); }
+  #perche .section-title { color: var(--white); }
+  #perche .section-sub { color: rgba(255,255,255,0.55); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 2rem; margin-top: 3.5rem;
+  }
+  .why-card {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .why-card:hover {
+    background: rgba(232,160,32,0.06);
+    border-color: rgba(232,160,32,0.3);
+  }
+  .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: var(--accent); opacity: 0.3;
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .why-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.7rem;
+  }
+  .why-card p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ── PROCESS ── */
+  #processo { background: var(--white); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 0; margin-top: 3.5rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 36px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--blue));
+    z-index: 0;
+  }
+  .step {
+    text-align: center; padding: 0 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .step-circle {
+    width: 72px; height: 72px;
+    background: var(--navy); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--accent); margin: 0 auto 1.5rem;
+    border: 3px solid var(--accent);
+  }
+  .step h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+  .step p { font-size: 0.88rem; color: #5a6476; line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  #recensioni { background: var(--light); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--white); border-radius: 8px;
+    padding: 2rem; border: 1px solid #e2e8f0;
+  }
+  .stars { color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
+  .review-text {
+    font-size: 0.95rem; color: #444;
+    line-height: 1.7; font-style: italic;
+    margin-bottom: 1.2rem;
+  }
+  .review-author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    text-transform: uppercase; color: var(--navy);
+  }
+  .review-location { font-size: 0.8rem; color: var(--gray); }
+
+  /* ── AREA COPERTA ── */
+  #area { background: var(--white); }
+  .area-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .area-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.6rem; list-style: none; margin-top: 1.5rem;
+  }
+  .area-list li {
+    font-size: 0.9rem; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text);
+  }
+  .area-list li::before { content: '📍'; font-size: 0.8rem; }
+  .area-visual {
+    background: var(--navy); border-radius: 12px;
+    padding: 3rem; text-align: center;
+    color: var(--white);
+  }
+  .area-visual h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem; font-weight: 900;
+    text-transform: uppercase; margin-bottom: 1rem;
+    color: var(--accent);
+  }
+  .coverage-badges {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    justify-content: center; margin-top: 1.5rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(232,160,32,0.3);
+    border-radius: 20px; padding: 6px 14px;
+    font-size: 0.8rem; color: rgba(255,255,255,0.8);
+  }
+
+  /* ── CTA BAND ── */
+  #preventivo {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: var(--white);
+    padding: 80px 5%;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #preventivo::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .cta-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900; text-transform: uppercase;
+    margin-bottom: 1rem; position: relative;
+  }
+  .cta-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.6);
+    margin-bottom: 2.5rem; position: relative;
+  }
+  .contact-form {
+    max-width: 600px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; position: relative;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white); border-radius: 6px;
+    padding: 14px 16px; font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form select option { background: var(--navy); }
+  .contact-form .full { grid-column: 1/-1; }
+  .contact-form textarea { resize: vertical; min-height: 100px; }
+  .btn-submit {
+    grid-column: 1/-1;
+    background: var(--accent); color: var(--navy);
+    border: none; border-radius: 6px;
+    padding: 16px; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,160,32,0.4);
+  }
+
+  /* ── CONTACT BAR ── */
+  #contatti {
+    background: var(--navy);
+    padding: 50px 5%; color: var(--white);
+  }
+  .contact-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 2rem;
+  }
+  .contact-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .contact-item p, .contact-item a {
+    font-size: 1rem; color: rgba(255,255,255,0.75);
+    text-decoration: none; line-height: 1.5;
+  }
+  .contact-item a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e1a;
+    padding: 30px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.3); text-decoration: none; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── FLOATING WHATSAPP ── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    background: #25d366; color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .area-grid { grid-template-columns: 1fr; }
+    .process-steps::before { display: none; }
+    .contact-form { grid-template-columns: 1fr; }
+    .contact-form .full { grid-column: 1; }
+    .contact-form .btn-submit { grid-column: 1; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-title   { animation: fadeUp 0.6s 0.15s ease both; }
+  .hero-subtitle { animation: fadeUp 0.6s 0.25s ease both; }
+  .hero-buttons { animation: fadeUp 0.6s 0.35s ease both; }
+  .hero-stats   { animation: fadeUp 0.7s 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">VIVARO<span> EXPRESS</span></div>
+  <ul class="nav-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#perche">Perché Noi</a></li>
+    <li><a href="#processo">Come Funziona</a></li>
+    <li><a href="#recensioni">Recensioni</a></li>
+    <li><a href="#area">Area Coperta</a></li>
+    <li><a href="#preventivo" class="nav-cta">Preventivo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">Pavia &amp; Provincia</div>
+      <h1 class="hero-title">
+        Traslochiamo<br>
+        <span class="highlight">la tua vita</span>
+        con cura.
+      </h1>
+      <p class="hero-subtitle">
+        Traslochi, sgomberi e trasporti professionali a Pavia e in tutta Italia.
+        Ogni oggetto trattato come se fosse nostro — con rapidità, precisione e zero sorprese.
+      </p>
+      <div class="hero-buttons">
+        <a href="#preventivo" class="btn-primary">Preventivo Gratuito</a>
+        <a href="tel:+393331218142" class="btn-outline">📞 Chiama Ora</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">1k+</div>
+        <div class="stat-label">Clienti Soddisfatti</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Traslochi Completati</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Anni di Esperienza</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="section-max">
+    <div class="section-tag">Cosa Facciamo</div>
+    <h2 class="section-title">I Nostri Servizi</h2>
+    <p class="section-sub">
+      Dalla singola consegna al trasloco completo: offriamo soluzioni su misura per privati,
+      aziende e negozi in tutta la provincia di Pavia.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Traslochi Residenziali</h3>
+        <p>Gestiamo il tuo trasloco dall'inizio alla fine: imballaggio professionale, trasporto sicuro e ricollocazione dei mobili nella nuova abitazione.</p>
+        <ul class="service-list">
+          <li>Smontaggio e rimontaggio mobili</li>
+          <li>Materiali da imballaggio inclusi</li>
+          <li>Assicurazione sul carico</li>
+          <li>Disponibilità su tutto il territorio</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Traslochi Aziendali</h3>
+        <p>Trasferiamo uffici, archivi e attrezzature aziendali riducendo al minimo i tempi di inattività. Interveniamo anche nei weekend.</p>
+        <ul class="service-list">
+          <li>Pianificazione logistica avanzata</li>
+          <li>Trasporto attrezzature delicate</li>
+          <li>Interventi fuori orario lavorativo</li>
+          <li>Referente dedicato al progetto</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚛</div>
+        <h3>Trasporti &amp; Consegne</h3>
+        <p>Trasportiamo qualsiasi articolo — mobili, elettrodomestici, bancali — da Pavia in tutta Italia. Anche un singolo pezzo, anche subito.</p>
+        <ul class="service-list">
+          <li>Ritiro da IKEA, Subito.it e negozi</li>
+          <li>Consegne urgenti e programmate</li>
+          <li>Furgoni attrezzati di ogni taglia</li>
+          <li>Tracciabilità in tempo reale</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗑️</div>
+        <h3>Sgomberi</h3>
+        <p>Svuotiamo cantine, soffitte, appartamenti e negozi in modo rapido e responsabile. Smaltimento dei rifiuti conforme alla normativa vigente.</p>
+        <ul class="service-list">
+          <li>Sgombero completo o parziale</li>
+          <li>Smaltimento e riciclo materiali</li>
+          <li>Preventivo gratuito on-site</li>
+          <li>Disponibili anche nel weekend</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3>Imballaggio Professionale</h3>
+        <p>Proteggiamo ogni oggetto con materiali professionali: dagli specchi fragili ai quadri di valore. Il tuo patrimonio arriva intatto a destinazione.</p>
+        <ul class="service-list">
+          <li>Scatole rinforzate e pluriball</li>
+          <li>Copri-mobili e feltri protettivi</li>
+          <li>Imballaggio dedicato per oggetti preziosi</li>
+          <li>Etichettatura sistematica</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>Acquisti Marketplace</h3>
+        <p>Hai acquistato un mobile su Subito.it o Facebook Marketplace? Pensiamo noi al ritiro e alla consegna, in modo rapido e conveniente.</p>
+        <ul class="service-list">
+          <li>Ritiro da privati e negozi</li>
+          <li>Consegna al piano con montaggio</li>
+          <li>Orari flessibili</li>
+          <li>Prezzi competitivi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERCHÉ NOI -->
+<section id="perche">
+  <div class="section-max">
+    <div class="section-tag" style="color:var(--accent2)">Il Nostro Vantaggio</div>
+    <h2 class="section-title">Perché Scegliere Vivaro Express</h2>
+    <p class="section-sub">
+      Non siamo solo un furgone. Siamo professionisti del trasloco che trattano
+      ogni incarico con la cura che merita.
+    </p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Puntualità Garantita</h3>
+        <p>Rispettiamo gli orari concordati. Ogni ritardo è un costo per te, e lo sappiamo bene. Organizziamo ogni dettaglio in anticipo.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Cura del Carico</h3>
+        <p>Ogni oggetto viene trattato con rispetto. Usiamo i migliori materiali di protezione e tecniche di carico professionali per azzerare i rischi.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Flessibilità Oraria</h3>
+        <p>Siamo disponibili anche la sera e nei weekend. Ti adattiamo alle tue esigenze, non il contrario. Chiama e troveremo la soluzione.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h3>Prezzi Trasparenti</h3>
+        <p>Nessuna sorpresa in fattura. Il preventivo gratuito è dettagliato e vincolante. Paghi solo ciò che è stato concordato.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <h3>Team Qualificato</h3>
+        <p>I nostri operatori sono formati e assicurati. Sanno come smontare ogni tipo di mobile, come proteggere le superfici e come muoversi negli spazi stretti.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <h3>10+ Anni di Esperienza</h3>
+        <p>Oltre un decennio di traslochi a Pavia e provincia. Conosciamo le strade, le scale strette, i palazzi senza ascensore. Nessuna sfida ci spaventa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo">
+  <div class="section-max">
+    <div class="section-tag">Come Lavoriamo</div>
+    <h2 class="section-title">Il Nostro Processo</h2>
+    <p class="section-sub">
+      Quattro semplici passaggi per un trasloco senza stress.
+    </p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <h3>Richiedi il Preventivo</h3>
+        <p>Contattaci via telefono, WhatsApp o dal form. In pochi minuti raccogliamo tutte le informazioni necessarie.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <h3>Sopralluogo &amp; Piano</h3>
+        <p>Per i traslochi più complessi, effettuiamo un sopralluogo gratuito e prepariamo un piano dettagliato.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <h3>Esecuzione Puntuale</h3>
+        <p>Il nostro team si presenta in orario, imballaggio alla mano, pronti ad eseguire ogni operazione con cura.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">4</div>
+        <h3>Consegna &amp; Verifica</h3>
+        <p>Ogni oggetto viene consegnato integro a destinazione. Verifichiamo insieme l'esito prima di andarcene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="section-max">
+    <div class="section-tag">Cosa Dicono di Noi</div>
+    <h2 class="section-title">Recensioni Clienti</h2>
+    <p class="section-sub">Oltre 1.000 clienti soddisfatti. Ecco cosa dicono di noi.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Trasloco da Pavia a Milano gestito alla perfezione. Puntuali, rapidi, professionali. Hanno smontato e rimontato tutti i mobili senza un graffio. Consiglio vivamente!"</p>
+        <div class="review-author">Marco T.</div>
+        <div class="review-location">Pavia → Milano</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Ho fatto acquistare un armadio su Subito e Vivaro Express l'ha ritirato e consegnato nel giro di poche ore. Servizio eccellente, prezzo onesto. Li richiamerò di certo."</p>
+        <div class="review-author">Giulia M.</div>
+        <div class="review-location">Pavia</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Sgombero di una cantina piena di roba accumulata in anni. Sono arrivati in due, hanno lavorato veloce e lasciato tutto pulito. Prezzo competitivo e grande cortesia."</p>
+        <div class="review-author">Roberto F.</div>
+        <div class="review-location">Vigevano</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Trasferimento d'ufficio nel weekend per non fermare la produzione durante la settimana. Hanno rispettato ogni dettaglio del piano concordato. Professionali al 100%."</p>
+        <div class="review-author">Alessia C.</div>
+        <div class="review-location">Pavia Centro</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Disponibili anche la sera tardi per ritirare un divano da IKEA. Montaggio incluso, scala stretta e tutto è andato benissimo. Finalmente un'azienda seria!"</p>
+        <div class="review-author">Luca P.</div>
+        <div class="review-location">Pavia Ovest</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Trasloco da Pavia a Torino con mobili antichi. Erano preoccupato, ma li hanno imballati con cura maniacale. Tutto arrivato intatto. Un'esperienza davvero tranquilla."</p>
+        <div class="review-author">Carla R.</div>
+        <div class="review-location">Pavia → Torino</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREA COPERTA -->
+<section id="area">
+  <div class="section-max">
+    <div class="area-grid">
+      <div>
+        <div class="section-tag">Dove Operiamo</div>
+        <h2 class="section-title">Area di Copertura</h2>
+        <p class="section-sub">
+          Con sede a Pavia, operiamo in tutta la provincia e su tutto il territorio nazionale per traslochi a lunga distanza.
+        </p>
+        <ul class="area-list">
+          <li>Pavia</li>
+          <li>Vigevano</li>
+          <li>Voghera</li>
+          <li>Mortara</li>
+          <li>Stradella</li>
+          <li>Broni</li>
+          <li>Lomellina</li>
+          <li>Oltrepò Pavese</li>
+          <li>Milano</li>
+          <li>Tutta Italia</li>
+        </ul>
+      </div>
+      <div class="area-visual">
+        <h3>🗺️ Operiamo in Tutta Italia</h3>
+        <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7;">
+          Base operativa a <strong style="color:var(--accent)">Pavia</strong>, con copertura immediata su tutta la provincia.
+          Per traslochi nazionali, contattaci per un preventivo personalizzato.
+        </p>
+        <div class="coverage-badges">
+          <span class="badge">Nord Italia</span>
+          <span class="badge">Centro Italia</span>
+          <span class="badge">Sud Italia</span>
+          <span class="badge">Isole</span>
+          <span class="badge">Traslochi Internazionali</span>
+        </div>
+        <br>
+        <a href="tel:+393331218142" class="btn-primary" style="display:inline-block; margin-top:1rem">
+          📞 Chiama per Info
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section id="preventivo">
+  <h2 class="cta-title">Richiedi il tuo Preventivo<br><span style="color:var(--accent)">Gratuito</span> e senza impegno</h2>
+  <p class="cta-sub">Rispondiamo entro poche ore. Spesso anche nell'arco di 30 minuti.</p>
+  <div class="contact-form">
+    <input type="text" placeholder="Il tuo Nome *">
+    <input type="tel" placeholder="Telefono / WhatsApp *">
+    <input type="email" placeholder="Email" class="">
+    <select>
+      <option value="" disabled selected>Tipo di Servizio *</option>
+      <option>Trasloco Residenziale</option>
+      <option>Trasloco Aziendale</option>
+      <option>Trasporto / Consegna</option>
+      <option>Sgombero</option>
+      <option>Ritiro Marketplace</option>
+      <option>Altro</option>
+    </select>
+    <input type="text" placeholder="Città di partenza *">
+    <input type="text" placeholder="Città di destinazione *">
+    <textarea class="full" placeholder="Descrivi brevemente il trasloco: numero di locali, piano, presenza ascensore, oggetti particolari..."></textarea>
+    <button class="btn-submit">🚚 Invia Richiesta di Preventivo</button>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <div class="contact-grid">
+    <div class="contact-item">
+      <h4>Telefono &amp; WhatsApp</h4>
+      <a href="tel:+393331218142">+39 333 121 8142</a>
+    </div>
+    <div class="contact-item">
+      <h4>Dove Siamo</h4>
+      <p>Pavia (PV) – Lombardia<br>Interventi in tutta Italia</p>
+    </div>
+    <div class="contact-item">
+      <h4>Orari</h4>
+      <p>Lun – Dom: 07:00 – 22:00<br>Disponibili su appuntamento</p>
+    </div>
+    <div class="contact-item">
+      <h4>Seguici</h4>
+      <a href="https://www.facebook.com/vivaroexpress" target="_blank">Facebook – Vivaro Express</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Vivaro Express – Traslochi &amp; Trasporti Pavia. Tutti i diritti riservati.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Termini di Servizio</a>
+    <a href="#preventivo">Preventivo</a>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/393331218142" class="wa-float" target="_blank" title="Scrivici su WhatsApp">
+  💬
+</a>
+
+</body>
+</html>
